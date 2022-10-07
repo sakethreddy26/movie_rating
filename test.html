@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="review.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body >
+
+    <div class="d2">
+        <div id="myDIV">
+            <h3 class="h1" id="demo">Hello 2 Video Game</h3><br>
+            <p class="pa">Price : $50.00</p>
+            <h2 class="h2">On Sale! $45.00</h2>
+        </div>
+        <div class="star_rating">
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
+        </div>
+        <div>
+            <p style="color: magenta;">ONLY 4 LEFT HURRY</p>
+            <label for="review">Write a review | <a href="h">Read all reviews</a></label>
+            <textarea name="text" placeholder="Write about it" cols="20" rows="3"></textarea><br>
+            <button><img src="facebook.png">like</button>
+            <button><img src="twitter.png">tweet</button>
+            <button onclick="myFunction()">Toggle it</button>
+
+        </div>
+    </div>
+    <script>
+        var numberOfDrumButtons = document.querySelectorAll(".sound").length;
+
+        for (var i = 0; i < numberOfDrumButtons; i++) {
+
+            document.querySelectorAll(".sound")[i].addEventListener("click", function () {
+
+                var buttonInnerHTML = this.innerHTML;
+
+                makeSound(buttonInnerHTML);
+
+            });
+
+        }
+        function makeSound(key) {
+            var tom1 = new Audio("game.mp3");
+            tom1.play();
+        }
+        const allStars = document.querySelectorAll('.star');
+        allStars.forEach((star, i) => {
+            star.onclick = function () {
+                let current_star_level = i + 1;
+                allStars.forEach((star, j) => {
+                    if (current_star_level >= j + 1) {
+                        star.innerHTML = '&#9733';
+                    }
+                    else {
+                        star.innerHTML = '&#9734';
+                    }
+
+                })
+            }
+        })
+
+        $(document).ready(function () {
+            $("p").on({
+                click: function () {
+                    $(this).css("color", "red");
+                }
+            });
+        });
+        $(document).ready(function () {
+            $(".h1,.h2").on({
+                click: function () {
+                    alert("Hurry up, discount sale is going on!!!");
+                }
+            });
+        });
+        function startAjax() {
+            $.ajax({
+                type: 'get',
+                url: 'assets/data.xml',
+                dataType: 'xml',
+                success: populateTable
+            });
+        }
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            $("#myDIV").fadeToggle(300);
+            $("#div2").fadeToggle("slow");
+            $("#div3").fadeToggle(4000);
+        }
+        $(document).ready(function () {
+            //$("#demo").css("font-size", "35px");
+            $("#demo").css("color", "pink");
+        });
+    </script>
+    <script>
+        $(function () { $('.h1').click(function () { $(this).css('font-color', 'yellow'); }); });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .d1 {
+            width: 300px;
+            position: relative;
+            display: inline-block;
+            left: 10px;
+        }
+
+        .d2 {
+            width: 300px;
+            position: relative;
+            display: inline-block;
+            left: 220px;
+            padding-top:10px;
+        }
+
+        .h1,
+        .h2,
+        .pa {
+            width: 300px;
+            margin: 0px;
+        }
+
+        .star_rating {
+            user-select: none;
+        }
+
+        .star {
+            font-size: 2rem;
+            color: rgb(235, 164, 13);
+            background-color: #E3E9E9;
+            border: none;
+        }
+    </style>
+
+</body>
+
+</html>
